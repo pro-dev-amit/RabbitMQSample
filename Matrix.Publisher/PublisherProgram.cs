@@ -14,17 +14,21 @@ namespace Matrix.Publisher
     {
         static void Main(string[] args)
         {
-            using (var bus = new MXRabbitBus("host=localhost").Bus)
+            using (var bus = MXRabbitClient.Bus)
             {
                 var input = "";
-                Console.WriteLine("Enter a message. 'Quit' to quit.");
-                while ((input = Console.ReadLine()) != "Quit")
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Press Enter to publish a message. 'Q' to quit.");
+
+                Console.ResetColor();
+
+                while ((input = Console.ReadLine()) != "Q")
                 {                    
-                    bus.Publish(new MXEmployee
+                    bus.Publish<MXEntity>(new MXEmployee
                     {
                         Id = 105,
                         Name = "Amit Kumar",
-                        Skills = new List<string> { ".Net", "Rails", "ASP.Net MVC" },
+                        Skills = new List<string> { ".Net", "ASP.Net MVC", "oh Rails" },
                     });                    
                 }
             }
