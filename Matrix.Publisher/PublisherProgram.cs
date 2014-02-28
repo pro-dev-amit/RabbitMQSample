@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Matrix.Processor
+namespace Matrix.Publisher
 {
     class Program
     {

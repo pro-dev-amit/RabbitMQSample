@@ -24,8 +24,7 @@ namespace Matrix.Processor
         }
 
         static void HandleMessage(MXEntity messageInput)
-        {
-            //throw new Exception();
+        {            
             Console.WriteLine("-----------------Processing now...-----------------");
 
             var message = messageInput as MXEmployee;
@@ -33,13 +32,8 @@ namespace Matrix.Processor
             Thread.Sleep(5000);
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Got message: {0} {1}", message.Id, message.Name);
-
-            foreach (var item in message.Skills)
-            {
-                Console.Write(item);
-            }
-            
+            Console.WriteLine("Id: {0}\nName: {1}\nSkills: {2}", message.Id, message.Name, string.Join(", ", message.Skills));
+                        
             Console.ResetColor();
 
             Console.WriteLine("\n-----------------Processing Complete..-----------------");
