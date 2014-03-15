@@ -28,8 +28,23 @@ namespace Matrix.Publisher
                     {
                         Id = 105,
                         Name = "Amit Kumar",
-                        Skills = new List<string> { ".Net", "ASP.Net MVC", "oh Rails" },
-                    });                    
+                        Skills = new List<string> { ".Net", "ASP.Net MVC", "Rails" },
+                    });
+
+                    var response = bus.Request<MXEntity, MXEmployeeQueueResponse>(new MXEmployee
+                    {
+                        Id = 108,
+                        Name = "Max Payne",
+                        Skills = new List<string> { "Java", "Rails" },
+                    });
+
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
+                    Console.WriteLine("---------Response Recieved-----------");
+
+                    Console.WriteLine("Id: {0}\nName: {1}\nSkills: {2}", response.Employee.Id, response.Employee.Name, string.Join(", ", response.Employee.Skills));
+                    
+                    Console.ResetColor();
                 }
             }
         }//End of Main

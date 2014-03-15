@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix.Publisher", "Matrix.Publisher\Matrix.Publisher.csproj", "{34453D32-C1FC-47E5-8F14-2EE5A1DF0DF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix.Data", "Matrix.Data\Matrix.Data.csproj", "{B23AE777-A606-4944-934C-A53D3F2E1225}"
@@ -8,6 +8,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix.Processor", "Matrix.Processor\Matrix.Processor.csproj", "{E37ADED8-BD09-4CB8-B511-93C810BC45F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix.Core", "Matrix.Core\Matrix.Core.csproj", "{609D0752-7EE7-41B4-B9A7-9479B4488242}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D80BC346-1104-42AA-90D1-8C6FDF8736AB}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

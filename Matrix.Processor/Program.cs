@@ -18,6 +18,8 @@ namespace Matrix.Processor
             {
                 bus.Subscribe<MXEntity>("test", HandleMessage);
 
+                bus.Respond<MXEntity, MXEmployeeQueueResponse>(c => RespondInRPCWay(c));
+
                 Console.ForegroundColor = ConsoleColor.Red;
 
                 Console.WriteLine("Listening for messages. Hit <return> to quit.");
@@ -27,14 +29,14 @@ namespace Matrix.Processor
                 Console.ReadLine();
             }
         }
-
+        
         static void HandleMessage(MXEntity messageInput)
-        {            
+        {
+            var message = messageInput as MXEmployee;
+
             Console.WriteLine("-----------------Processing now...-----------------");
 
-            Thread.Sleep(5000);
-
-            var message = messageInput as MXEmployee;
+            Thread.Sleep(2000);            
 
             Console.ForegroundColor = ConsoleColor.Green;
             
@@ -44,5 +46,28 @@ namespace Matrix.Processor
 
             Console.WriteLine("\n-----------------Processing Complete..-----------------");
         }
-    }
+
+        static MXEmployeeQueueResponse RespondInRPCWay(MXEntity messageInput)
+        {
+            var message = messageInput as MXEmployee;
+
+            MXEmployeeQueueResponse response;
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Message received is as:");
+
+            Console.WriteLine("Id: {0}\nName: {1}\nSkills: {2}", message.Id, message.Name, string.Join(", ", message.Skills));
+
+            Console.ResetColor();
+
+            Console.WriteLine("-----------------Processing RPC ...-----------------");
+            //doing something with the message now
+            response = new MXEmployeeQueueResponse { Employee = message };
+            response.Employee.Skills.Add("Solr Search");
+
+            Console.WriteLine("\n-----------------Processing RPC Complete..-----------------");
+
+            return response;
+        }
+    }//End of Class "Program"
 }

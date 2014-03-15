@@ -42,6 +42,7 @@
     <Compile Include="MXEmployee.cs" />
     <Compile Include="MXEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MXEmployeeQueueResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
