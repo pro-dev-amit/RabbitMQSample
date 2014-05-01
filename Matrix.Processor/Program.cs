@@ -16,7 +16,7 @@ namespace Matrix.Processor
         {
             using (var bus = MXRabbitClient.Bus)
             {
-                bus.Subscribe<MXEntity>("test", HandleMessage);
+                bus.SubscribeAsync<MXEntity>("test", HandleMessage);
 
                 bus.Respond<MXEntity, MXEmployeeQueueResponse>(c => RespondInRPCWay(c));
 
@@ -30,21 +30,24 @@ namespace Matrix.Processor
             }
         }
         
-        static void HandleMessage(MXEntity messageInput)
+        static Task HandleMessage(MXEntity messageInput)
         {
-            var message = messageInput as MXEmployee;
+            return Task.Run(() =>
+                {
+                    var message = messageInput as MXEmployee;
 
-            Console.WriteLine("-----------------Processing now...-----------------");
+                    Console.WriteLine("-----------------Processing now...-----------------");
 
-            Thread.Sleep(2000);            
+                    Thread.Sleep(2000);
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            
-            Console.WriteLine("Id: {0}\nName: {1}\nSkills: {2}", message.Id, message.Name, string.Join(", ", message.Skills));
-                        
-            Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.WriteLine("\n-----------------Processing Complete..-----------------");
+                    Console.WriteLine("Id: {0}\nName: {1}\nSkills: {2}", message.Id, message.Name, string.Join(", ", message.Skills));
+
+                    Console.ResetColor();
+
+                    Console.WriteLine("\n-----------------Processing Complete..-----------------");
+                });
         }
 
         static MXEmployeeQueueResponse RespondInRPCWay(MXEntity messageInput)
